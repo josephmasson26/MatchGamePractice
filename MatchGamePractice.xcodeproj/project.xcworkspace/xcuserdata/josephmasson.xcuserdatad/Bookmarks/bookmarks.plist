@@ -12,13 +12,13 @@
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>29</string>
+					<string>28</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>28</string>
+					<string>27</string>
 					<key>Timestamp</key>
-					<string>728525939.46284</string>
+					<string>728599650.6389281</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -37,7 +37,7 @@
 				<string>    mutating func shuffle() {
 </string>
 				<key>leading</key>
-				<string>    }
+				<string>    var indexOfFaceUpCard : Int?
     
 </string>
 				<key>trailing</key>
