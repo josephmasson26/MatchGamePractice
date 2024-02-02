@@ -54,12 +54,9 @@ struct CardView: View {
     
     @EnvironmentObject var viewModel: MemorizeViewModel
     
-    var card:
+    var card: viewModel.cards
 
-    
-    
-
-    
+  
     var body: some View {
     
         ZStack{
