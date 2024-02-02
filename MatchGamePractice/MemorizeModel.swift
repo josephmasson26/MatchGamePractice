@@ -9,7 +9,7 @@ import Foundation
 
 
 struct MemorizeModel {
-    var cards: [Card]
+    private(set) var cards: [Card]
     
     init(pairsOfCards: Int, cardContent: (Int) -> String) {
         cards = []
@@ -24,12 +24,16 @@ struct MemorizeModel {
         }
     }
     
+    mutating func shuffle() {
+        cards.shuffle()
+    }
+    
     func choose(_ card: Card) {
         //do something
         print("chose \(card)")
     }
     
-    struct Card {
+    struct Card: Identifiable{
         let id: String
         var isFaceUp: Bool
         var isMatched: Bool

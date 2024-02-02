@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var fruits : [String] = ["🍎", "🍐", "🍊", "🍋", "🍌", "🍉", "🍇", "🍓"]
+    var viewModel = MemorizeViewModel()
+    
     @State var color: Color = .green
     
     
@@ -21,21 +22,20 @@ struct ContentView: View {
             }.scrollIndicators(.hidden)
             
             HStack{
-                Button(action: {fruits.shuffle()}, label:{
+                Button(action: {viewModel.shuffle()}, label:{
                     Image(systemName: "shuffle")
-                    })
+                })
                 ColorPicker(selection: $color, label: {})
             }
         }
-        .animation(.spring(), value: fruits)
         .padding(16.0)
         
         
     }
     var cards:some View {
-        LazyVGrid(columns: [GridItem(), GridItem()]) {
-            ForEach(fruits, id: \.self) {
-                fruit in CardView(content: fruit, color: color).aspectRatio(2/3, contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
+        LazyVGrid(columns: [GridItem(), GridItem(), GridItem(), GridItem()]) {
+            ForEach(viewModel.cards) {
+                card in CardView(content: card.content).aspectRatio(2/3, contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
             }
         }
     }
