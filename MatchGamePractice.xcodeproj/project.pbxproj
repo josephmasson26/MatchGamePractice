@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9101B67C2B6C65EC005F7A4B /* MemorizeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9101B67B2B6C65EC005F7A4B /* MemorizeModel.swift */; };
+		9101B67E2B6C68ED005F7A4B /* MemorizeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9101B67D2B6C68ED005F7A4B /* MemorizeViewModel.swift */; };
 		910C23D82B69C0FA0085F521 /* MatchGamePracticeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910C23D72B69C0FA0085F521 /* MatchGamePracticeApp.swift */; };
 		910C23DA2B69C0FA0085F521 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910C23D92B69C0FA0085F521 /* ContentView.swift */; };
 		910C23DC2B69C0FB0085F521 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 910C23DB2B69C0FB0085F521 /* Assets.xcassets */; };
@@ -34,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9101B67B2B6C65EC005F7A4B /* MemorizeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemorizeModel.swift; sourceTree = "<group>"; };
+		9101B67D2B6C68ED005F7A4B /* MemorizeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemorizeViewModel.swift; sourceTree = "<group>"; };
 		910C23D42B69C0FA0085F521 /* MatchGamePractice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MatchGamePractice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		910C23D72B69C0FA0085F521 /* MatchGamePracticeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchGamePracticeApp.swift; sourceTree = "<group>"; };
 		910C23D92B69C0FA0085F521 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -96,6 +100,8 @@
 			children = (
 				910C23D72B69C0FA0085F521 /* MatchGamePracticeApp.swift */,
 				910C23D92B69C0FA0085F521 /* ContentView.swift */,
+				9101B67B2B6C65EC005F7A4B /* MemorizeModel.swift */,
+				9101B67D2B6C68ED005F7A4B /* MemorizeViewModel.swift */,
 				910C23DB2B69C0FB0085F521 /* Assets.xcassets */,
 				910C23DD2B69C0FB0085F521 /* Preview Content */,
 			);
@@ -258,6 +264,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				910C23DA2B69C0FA0085F521 /* ContentView.swift in Sources */,
+				9101B67C2B6C65EC005F7A4B /* MemorizeModel.swift in Sources */,
+				9101B67E2B6C68ED005F7A4B /* MemorizeViewModel.swift in Sources */,
 				910C23D82B69C0FA0085F521 /* MatchGamePracticeApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
