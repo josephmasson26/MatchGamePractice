@@ -22,23 +22,51 @@ struct MemorizeModel {
             
 
         }
+        
+        shuffle()
     }
     
     mutating func shuffle() {
         cards.shuffle()
     }
     
-    func choose(_ card: Card) {
-        //do something
-        print("chose \(card)")
+    func index(of card: Card) -> Int? {
+        for index in cards.indices {
+            if cards[index] == card {
+                return index
+            }
+        }
+        
+        return nil
     }
     
-    struct Card: Identifiable{
+    mutating func choose(_ card: Card) {
+        print("chose \(card)")
+        
+        if let indexOfCard = index(of: card) {
+            if !cards[indexOfCard].isFaceUp && !cards[indexOfCard].isMatched {
+                if let otherCardIndex = indexOfFaceUpCard {
+                    if cards[indexOfCard].content == cards[otherCardIndex].content {
+                        cards[indexOfCard].isMatched = true
+                        cards[otherCardIndex].isMatched = true
+                    }
+                    indexOfFaceUpCard = nil
+                } else {
+                    for index in cards.indices {
+                        cards[index].isFaceUp = false
+                    }
+                    indexOfFaceUpCard = indexOfCard
+                }
+                cards[indexOdCard].isFaceUp = true
+            }
+        }
+    }
+    
+    struct Card: Identifiable, Equatable{
         let id: String
         var isFaceUp: Bool
         var isMatched: Bool
-        let content: String //fruit
-        
+        let content: String //fruit        
         
     }
 }

@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     var viewModel = MemorizeViewModel()
     
-    @State var color: Color = .green
+    @State var color: Color = .red
     
     
     var body: some View {
@@ -28,14 +28,22 @@ struct ContentView: View {
                 ColorPicker(selection: $color, label: {})
             }
         }
+        .animation(.spring(), value: viewModel.cards)
         .padding(16.0)
-        
-        
+        .environmentObject(viewModel)
     }
     var cards:some View {
         LazyVGrid(columns: [GridItem(), GridItem(), GridItem(), GridItem()]) {
             ForEach(viewModel.cards) {
-                card in CardView(content: card.content).aspectRatio(2/3, contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
+                card in 
+                if !card.isMatched {
+                    CardView(card: card)
+                        .aspectRatio(2/3, contentMode: .fit)
+                } else {
+                    Rectangle()
+                        .fill(.background)
+                        .aspectRatio(2/3, contentMode: .fit)
+                }
             }
         }
     }
@@ -43,21 +51,24 @@ struct ContentView: View {
 }
 
 struct CardView: View {
-    var content: String
-    var color: Color
     
-    @State var isFaceUp: Bool = true
+    @EnvironmentObject var viewModel: MemorizeViewModel
+    
+    var card:
+
+    
+    
 
     
     var body: some View {
     
         ZStack{
             RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*/25.0/*@END_MENU_TOKEN@*/).foregroundColor(.white)
-            RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*/25.0/*@END_MENU_TOKEN@*/).strokeBorder(lineWidth: 5.0).foregroundColor(color)
-            Text(content).font(.largeTitle)
-            RoundedRectangle(cornerRadius: 25.0).foregroundColor(color).opacity(isFaceUp ? 0 : 1)
+            RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*/25.0/*@END_MENU_TOKEN@*/)
+            Text(card.content).font(.largeTitle)
+            RoundedRectangle(cornerRadius: 25.0).fill()
         }.onTapGesture {
-            isFaceUp.toggle()
+            viewModel.choose(card)
         }
     }
     

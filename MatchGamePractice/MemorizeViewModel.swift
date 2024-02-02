@@ -8,8 +8,8 @@
 import Foundation
 
 
-class MemorizeViewModel {
-    var model = MemorizeModel(pairsOfCards: 8, cardContent: { index in
+class MemorizeViewModel: Observable {
+    @Published var model = MemorizeModel(pairsOfCards: 8, cardContent: { index in
         let fruits = ["🍎", "🍐", "🍊", "🍋", "🍌", "🍉", "🍇", "🍓"]
         
         return fruits[index]
