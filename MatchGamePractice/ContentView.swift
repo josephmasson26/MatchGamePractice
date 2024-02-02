@@ -8,69 +8,75 @@
 import SwiftUI
 
 struct ContentView: View {
-    var viewModel = MemorizeViewModel()
+    @ObservedObject var viewModel = MemorizeViewModel()
     
-    @State var color: Color = .red
+    @State var cardColor: Color = .red
     
     
     var body: some View {
         VStack{
-            //CardView(content: "abcd", color: color)
-            //CardView(content: "content", color: color)
             ScrollView(.vertical) {
                 cards
-            }.scrollIndicators(.hidden)
-            
-            HStack{
-                Button(action: {viewModel.shuffle()}, label:{
+            }
+            Spacer()
+            cardShuffler
+            }
+        .padding()
+        }
+ 
+    var cards:some View {
+        LazyVGrid(columns: [GridItem(), GridItem(), GridItem(), GridItem()], spacing: 0) {
+            ForEach(viewModel.cards.indices, id: \.self) {
+                index in
+                CardView(card: viewModel.cards[index]).aspectRatio(2/3, contentMode: .fit).padding(.vertical)
+                    .onTapGesture {
+                        viewModel.choose(viewModel.cards[index])
+                    }
+                
+            }
+        }.foregroundColor(cardColor)
+    }
+    
+    var cardShuffler : some View {
+            HStack {
+                Button(action: {
+                    viewModel.shuffle()
+                }, label: {
                     Image(systemName: "shuffle")
                 })
-                ColorPicker(selection: $color, label: {})
+                Spacer()
+                ColorPicker(selection: $cardColor, label: {
+
+                })
+                
+
             }
+            .font(.title)
         }
-        .animation(.spring(), value: viewModel.cards)
-        .padding(16.0)
-        .environmentObject(viewModel)
-    }
-    var cards:some View {
-        LazyVGrid(columns: [GridItem(), GridItem(), GridItem(), GridItem()]) {
-            ForEach(viewModel.cards) {
-                card in 
-                if !card.isMatched {
-                    CardView(card: card)
-                        .aspectRatio(2/3, contentMode: .fit)
-                } else {
-                    Rectangle()
-                        .fill(.background)
-                        .aspectRatio(2/3, contentMode: .fit)
-                }
-            }
-        }
-    }
     
 }
 
 struct CardView: View {
     
-    @EnvironmentObject var viewModel: MemorizeViewModel
     
-    var card: viewModel.cards
-
-  
+    
+    var card: MemorizeModel.Card
+    
+    
     var body: some View {
-    
+        
         ZStack{
             RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*/25.0/*@END_MENU_TOKEN@*/).foregroundColor(.white)
-            RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*/25.0/*@END_MENU_TOKEN@*/)
+            RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*/25.0/*@END_MENU_TOKEN@*/).strokeBorder(lineWidth: 5)
             Text(card.content).font(.largeTitle)
-            RoundedRectangle(cornerRadius: 25.0).fill()
-        }.onTapGesture {
-            viewModel.choose(card)
+            RoundedRectangle(cornerRadius: 25.0).fill().opacity(card.isFaceUp ? 1 : 0)
         }
+        
     }
+    
     
 }
 
 #Preview {
-    ContentView()
+    ContentView(viewModel: MemorizeViewModel())
 }

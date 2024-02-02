@@ -19,12 +19,11 @@ struct MemorizeModel {
             
             cards.append(Card(id: "\(index)a", isFaceUp: false, isMatched: false, content: content))
             cards.append(Card(id: "\(index)b", isFaceUp: false, isMatched: false, content: content))
-            
-
         }
-        
         shuffle()
     }
+    
+    var indexOfFaceUpCard : Int?
     
     mutating func shuffle() {
         cards.shuffle()
@@ -57,7 +56,7 @@ struct MemorizeModel {
                     }
                     indexOfFaceUpCard = indexOfCard
                 }
-                cards[indexOdCard].isFaceUp = true
+                cards[indexOfCard].isFaceUp = true
             }
         }
     }
